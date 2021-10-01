@@ -434,12 +434,34 @@ function cargarCarroPedido() {
     total = total + amountProd;
     let modButAdd = document.createElement("a");
     modButAdd.className = "btn";
+    modButAdd.setAttribute("id", "modButAdd");
     modButAdd.innerHTML = "+"
     modButAdd.classList.add("btnDark");
     let modButSub = document.createElement("a");
     modButSub.className = "btn";
+    modButSub.setAttribute("id", "modButSub");
     modButSub.innerHTML = "-"
     modButSub.classList.add("btnDark");
+    let i = 0;
+    modButAdd.onclick = () => {
+      i++;
+        cartContent.push(em);
+        thQ.innerHTML = em.cantidad + i;
+        thA.innerHTML = em.producto.price * (em.cantidad + i);
+        actualizarCantidad();
+    };
+    modButSub.onclick = () => {
+      let indice = cartContent.lastIndexOf(em);
+        if(indice !== -1)
+        {
+          i--;
+          cartContent.splice(indice, 1);
+          thQ.innerHTML = em.cantidad + i;
+          thA.innerHTML = em.producto.price * (em.cantidad + i);
+          actualizarCantidad();
+        }
+    };
+
     mod.appendChild(modButAdd);
     mod.appendChild(modButSub);
 
