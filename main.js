@@ -12,12 +12,9 @@ let removeAllChildNodes = (parent) => {
 
 let actualizarCantidad = () => {
   let numProd = document.getElementById("cartTxt");
-  if(cartContent.length === 1)
-  {
+  if (cartContent.length === 1) {
     numProd.innerHTML = cartContent.length + " item";
-  }
-  else
-  {
+  } else {
     numProd.innerHTML = cartContent.length + " items";
   }
 };
@@ -247,7 +244,7 @@ btnDesserts.onclick = () => {
         columna.className = "col-3";
 
         let card = document.createElement("card");
-        card.classList.add("cardWidth")
+        card.classList.add("cardWidth");
         let image = document.createElement("img");
         image.className = "card-img-top";
         image.setAttribute("src", element.image);
@@ -396,6 +393,7 @@ function cargarCarroPedido() {
   let thDesc = document.createElement("th");
   let thUnit = document.createElement("th");
   let thAm = document.createElement("th");
+  let thMod = document.createElement("th");
   thItem.setAttribute("scope", "col");
   thItem.innerHTML = "Item";
   thQt.setAttribute("scope", "col");
@@ -406,11 +404,14 @@ function cargarCarroPedido() {
   thUnit.innerHTML = "Unit Price";
   thAm.setAttribute("scope", "col");
   thAm.innerHTML = "Amount";
+  thMod.setAttribute("scope", "col");
+  thMod.innerHTML = "Modify";
   trHead.appendChild(thItem);
   trHead.appendChild(thQt);
   trHead.appendChild(thDesc);
   trHead.appendChild(thUnit);
   trHead.appendChild(thAm);
+  trHead.appendChild(thMod);
   tHeader.append(trHead);
   tabla.appendChild(tHeader);
   let tBody = document.createElement("tbody");
@@ -435,31 +436,30 @@ function cargarCarroPedido() {
     let modButAdd = document.createElement("a");
     modButAdd.className = "btn";
     modButAdd.setAttribute("id", "modButAdd");
-    modButAdd.innerHTML = "+"
+    modButAdd.innerHTML = "+";
     modButAdd.classList.add("btnDark");
     let modButSub = document.createElement("a");
     modButSub.className = "btn";
     modButSub.setAttribute("id", "modButSub");
-    modButSub.innerHTML = "-"
+    modButSub.innerHTML = "-";
     modButSub.classList.add("btnDark");
     let i = 0;
     modButAdd.onclick = () => {
       i++;
-        cartContent.push(em);
-        thQ.innerHTML = em.cantidad + i;
-        thA.innerHTML = em.producto.price * (em.cantidad + i);
-        actualizarCantidad();
+      cartContent.push(em);
+      thQ.innerHTML = em.cantidad + i;
+      thA.innerHTML = em.producto.price * (em.cantidad + i);
+      actualizarCantidad();
     };
     modButSub.onclick = () => {
       let indice = cartContent.lastIndexOf(em);
-        if(indice !== -1)
-        {
-          i--;
-          cartContent.splice(indice, 1);
-          thQ.innerHTML = em.cantidad + i;
-          thA.innerHTML = em.producto.price * (em.cantidad + i);
-          actualizarCantidad();
-        }
+      if (indice !== -1) {
+        i--;
+        cartContent.splice(indice, 1);
+        thQ.innerHTML = em.cantidad + i;
+        thA.innerHTML = em.producto.price * (em.cantidad + i);
+        actualizarCantidad();
+      }
     };
 
     mod.appendChild(modButAdd);
@@ -470,7 +470,7 @@ function cargarCarroPedido() {
     trBod.appendChild(thDe);
     trBod.appendChild(thUn);
     trBod.appendChild(thA);
-    trBod.appendChild(mod)
+    trBod.appendChild(mod);
 
     tBody.appendChild(trBod);
   });
@@ -481,7 +481,7 @@ function cargarCarroPedido() {
   let totalText = document.createElement("p");
   totalText.className = "font-weight-bold";
   totalText.innerHTML = "Total: $" + total;
-  
+
   let botones = document.createElement("div");
   botones.className = "row";
 

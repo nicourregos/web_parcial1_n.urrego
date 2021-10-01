@@ -1,78 +1,76 @@
-.logo{
-    height: 3rem;
+.logo {
+  height: 3rem;
 }
 
-#name{
-    font-family: 'Satisfy', sans-serif;
+#name {
+  font-family: "Satisfy", sans-serif;
 }
 
-#cartTxt{
-    padding-top: 1rem;
-    
+#cartTxt {
+  padding-top: 1rem;
 }
 
-.botMargin{
-    background-color: white;
-    border-bottom: 1px solid lightgray;
+.botMargin {
+  background-color: white;
+  border-bottom: 1px solid lightgray;
 }
 
-.topMargin{
-    background-color: white;
-    border-top: 1px solid lightgray;
+.topMargin {
+  background-color: white;
+  border-top: 1px solid lightgray;
 }
 
-.padleft{
-    padding-left: 2vw;
+.padleft {
+  padding-left: 2vw;
 }
 
-.dark{
-    padding-top: 2rem;
-    background-color: rgb(50, 51, 59);
-    color: white;
-    padding-bottom: 1rem;
+.dark {
+  padding-top: 2rem;
+  background-color: rgb(50, 51, 59);
+  color: white;
+  padding-bottom: 1rem;
 }
 
-#menu{
-    padding: 1rem;
-    font-size: small;
+#menu {
+  padding: 1rem;
+  font-size: small;
 }
 
-.titleCat{
-    padding: 1rem;
-    text-align: center;
+.titleCat {
+  padding: 1rem;
+  text-align: center;
 }
 
-#foot{
-    padding: 1rem;
-    text-align: center;
+#foot {
+  padding: 1rem;
+  text-align: center;
 }
 
-#banner{
-    text-align: center;
+#banner {
+  text-align: center;
 }
 
-#banImg{
-    max-width: 100%;
-    height: auto;
+#banImg {
+  max-width: 100%;
+  height: auto;
 }
 
-.cardWidth{
-    width: 18rem;
+.cardWidth {
+  width: 18rem;
 }
 
-.cancel{
-    background-color: rgb(231,82,87);
-    border: 1px solid turquoise;
-
+.cancel {
+  background-color: rgb(231, 82, 87);
+  border: 1px solid turquoise;
 }
 
-.confirm{
-    background-color: cornsilk;
-    border: 1px solid black;
+.confirm {
+  background-color: cornsilk;
+  border: 1px solid black;
 }
 
-.btnDark{
-    margin: 1%;
-    background-color: rgb(50, 51, 59);
-    color: white;
+.btnDark {
+  margin: 1%;
+  background-color: rgb(50, 51, 59);
+  color: white;
 }
