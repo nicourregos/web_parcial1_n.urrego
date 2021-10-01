@@ -9,17 +9,28 @@
       integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap">
     <link rel="stylesheet" href="main.css" />
     <title>n.urrego</title>
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-light bg-light justify-content-between">
+      <nav class="navbar navbar-light justify-content-between botMargin">
         <div class="container-sm">
-          <h2>Restaurant & Lounge</h2>
+          <h2 id="name">Restaurant & Lounge</h2>
           <div class="derecha">
-            <div class="row">
-              <div class="col">
+            <div class="row" id="cartArea">
+              <div class="col-5">
+                <a id="cartIcon">
+                  <img
+                    class="logo"
+                    src="./Assets/cart.png"
+                    alt="carritoCompras"
+                  />
+                </a>
+              </div>
+              <div class="col-7">
                 <p id="cartTxt">0 items</p>
               </div>
             </div>
@@ -29,27 +40,29 @@
     </header>
 
     <main>
-      <section id="imagenEncabezado">
-        <img class="imagenCentro" src="https://i.imgur.com/S8Ffdqa.png" />
+      <section id="banner">
+        <img id="banImg" src="./Assets/banner.png" />
       </section>
 
-      <section id="menu">
-        <div class="container menuNegro">
+      <section class="botMargin topMargin" id="menu">
+        <div class="container dark padleft">
           <div class="row">
-            <div class="col-2">
+            <div class="col">
               <a id="burgers"><p>Burgers</p></a>
             </div>
-            <div class="col-2">
+            <div class="col">
               <a id="tacos"><p>Tacos</p></a>
             </div>
-            <div class="col-2">
+            <div class="col">
               <a id="salads"><p>Salads</p></a>
             </div>
-            <div class="col-2">
+            <div class="col">
               <a id="desserts"><p>Desserts</p></a>
             </div>
-            <div class="col-2">
+            <div class="col">
               <a id="drinks"><p>Drinks & Sides</p></a>
+            </div>
+            <div class="col-6">
             </div>
           </div>
         </div>
@@ -61,6 +74,59 @@
         </div>
       </section>
     </main>
+    <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Cancel the order
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Are you sure about cancelling the order?
+            </div>
+            <div class="modal-footer">
+              <button
+                id="modalConfirm"
+                type="button"
+                class="btn confirm"
+                data-bs-dismiss="modal"
+              >
+                Yes, I want to cancel the order
+              </button>
+              <button
+                id="modalCancel"
+                type="button"
+                class="btn cancel"
+                data-bs-dismiss="modal"
+              >
+                No, I want to continue adding products
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footerContact">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <p class="display-8" id="foot">
+              Contact us: +57 3102105253 - info@restaurant.com - @restaurant
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
 
 
     <script src="main.js"></script>
@@ -69,15 +135,6 @@
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
       crossorigin="anonymous"
     ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
-      integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
-      integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
   </body>
 </html>

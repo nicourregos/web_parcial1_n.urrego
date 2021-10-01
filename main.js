@@ -33,6 +33,8 @@ btnBurgers.onclick = () => {
       let titleName = document.getElementById("nombreCategoria");
       removeAllChildNodes(titleName);
       let titleCat = document.createElement("h3");
+      titleCat.classList.add("titleCat");
+      titleCat.classList.add("botMargin");
       titleCat.innerHTML = "Burgers";
       titleName.appendChild(titleCat);
 
@@ -96,7 +98,8 @@ btnTacos.onclick = () => {
   let titleName = document.getElementById("nombreCategoria");
   removeAllChildNodes(titleName);
   let nombreCategoria = document.createElement("h3");
-  nombreCategoria.className = "centrado";
+  nombreCategoria.classList.add("titleCat");
+  nombreCategoria.classList.add("botMargin");
   nombreCategoria.innerHTML = "Tacos";
   titleName.appendChild(nombreCategoria);
 
@@ -134,7 +137,7 @@ btnTacos.onclick = () => {
 
         let btnCart = document.createElement("a");
         btnCart.className = "btn btn-dark";
-        btnCart.innerHTML = "Add to car";
+        btnCart.innerHTML = "Add to cart";
         btnCart.onclick = () => {
           let producto = {
             name: element.name,
@@ -164,7 +167,8 @@ btnSalads.onclick = () => {
   let titleName = document.getElementById("nombreCategoria");
   removeAllChildNodes(titleName);
   let nombreCategoria = document.createElement("h3");
-  nombreCategoria.className = "centrado";
+  nombreCategoria.classList.add("titleCat");
+  nombreCategoria.classList.add("botMargin");
   nombreCategoria.innerHTML = "Salads";
   titleName.appendChild(nombreCategoria);
 
@@ -202,7 +206,7 @@ btnSalads.onclick = () => {
 
         let btnCart = document.createElement("a");
         btnCart.className = "btn btn-dark";
-        btnCart.innerHTML = "Add to car";
+        btnCart.innerHTML = "Add to cart";
         btnCart.onclick = () => {
           let producto = {
             name: element.name,
@@ -230,7 +234,8 @@ btnDesserts.onclick = () => {
   let titleName = document.getElementById("nombreCategoria");
   removeAllChildNodes(titleName);
   let nombreCategoria = document.createElement("h3");
-  nombreCategoria.className = "centrado";
+  nombreCategoria.classList.add("titleCat");
+  nombreCategoria.classList.add("botMargin");
   nombreCategoria.innerHTML = "Desserts";
   titleName.appendChild(nombreCategoria);
 
@@ -242,7 +247,7 @@ btnDesserts.onclick = () => {
         columna.className = "col-3";
 
         let card = document.createElement("card");
-        card.style = "width:18rem";
+        card.classList.add("cardWidth")
         let image = document.createElement("img");
         image.className = "card-img-top";
         image.setAttribute("src", element.image);
@@ -268,7 +273,7 @@ btnDesserts.onclick = () => {
 
         let btnCart = document.createElement("a");
         btnCart.className = "btn btn-dark";
-        btnCart.innerHTML = "Add to car";
+        btnCart.innerHTML = "Add to cart";
         btnCart.onclick = () => {
           let producto = {
             name: element.name,
@@ -296,7 +301,8 @@ btnDrinks.onclick = () => {
   let titleName = document.getElementById("nombreCategoria");
   removeAllChildNodes(titleName);
   let nombreCategoria = document.createElement("h3");
-  nombreCategoria.className = "centrado";
+  nombreCategoria.classList.add("titleCat");
+  nombreCategoria.classList.add("botMargin");
   nombreCategoria.innerHTML = "Drinks";
   titleName.appendChild(nombreCategoria);
 
@@ -334,7 +340,7 @@ btnDrinks.onclick = () => {
 
         let btnCart = document.createElement("a");
         btnCart.className = "btn btn-dark";
-        btnCart.innerHTML = "Add to car";
+        btnCart.innerHTML = "Add to cart";
         btnCart.onclick = () => {
           let producto = {
             name: element.name,
@@ -355,6 +361,166 @@ btnDrinks.onclick = () => {
     });
 };
 
-let cart = document.getElementById("carrito");
+let cart = document.getElementById("cartIcon");
+function cargarCarroPedido() {
+  let carritoProcesado = [];
+  cartContent.forEach((element) => {
+    let elemEncontrados = cartContent.filter((em) => em.name == element.name);
+    let elemProces = {
+      producto: element,
+      cantidad: elemEncontrados.length,
+    };
+    carritoProcesado = carritoProcesado.filter(
+      (elems) => elems.producto.name != elemProces.producto.name
+    );
+    carritoProcesado.push(elemProces);
+  });
+
+  let fila = document.getElementById("filaProductos");
+  fila.innerHTML = " ";
+  let nombreTit = document.getElementById("nombreCategoria");
+  removeAllChildNodes(nombreTit);
+  let titulo = document.createElement("h3");
+  titulo.classList.add("titleCat");
+  titulo.classList.add("botMargin");
+  titulo.innerHTML = "Order Detail";
+  nombreTit.appendChild(titulo);
+
+  let tabla = document.createElement("table");
+  tabla.className = "table table-striped";
+  let tHeader = document.createElement("thead");
+  let trHead = document.createElement("tr");
+
+  let thItem = document.createElement("th");
+  let thQt = document.createElement("th");
+  let thDesc = document.createElement("th");
+  let thUnit = document.createElement("th");
+  let thAm = document.createElement("th");
+  thItem.setAttribute("scope", "col");
+  thItem.innerHTML = "Item";
+  thQt.setAttribute("scope", "col");
+  thQt.innerHTML = "Qty.";
+  thDesc.setAttribute("scope", "col");
+  thDesc.innerHTML = "Description";
+  thUnit.setAttribute("scope", "col");
+  thUnit.innerHTML = "Unit Price";
+  thAm.setAttribute("scope", "col");
+  thAm.innerHTML = "Amount";
+  trHead.appendChild(thItem);
+  trHead.appendChild(thQt);
+  trHead.appendChild(thDesc);
+  trHead.appendChild(thUnit);
+  trHead.appendChild(thAm);
+  tHeader.append(trHead);
+  tabla.appendChild(tHeader);
+  let tBody = document.createElement("tbody");
+  let total = 0;
+  carritoProcesado.forEach((em, index) => {
+    let trBod = document.createElement("tr");
+
+    let thIt = document.createElement("th");
+    thIt.setAttribute("scope", "row");
+    let thQ = document.createElement("td");
+    let thDe = document.createElement("td");
+    let thUn = document.createElement("td");
+    let thA = document.createElement("td");
+    let mod = document.createElement("td");
+    thIt.innerHTML = index + 1;
+    thQ.innerHTML = em.cantidad;
+    thDe.innerHTML = em.producto.name;
+    thUn.innerHTML = em.producto.price;
+    let amountProd = em.producto.price * em.cantidad;
+    thA.innerHTML = amountProd;
+    total = total + amountProd;
+    let modButAdd = document.createElement("a");
+    modButAdd.className = "btn";
+    modButAdd.innerHTML = "+"
+    modButAdd.classList.add("btnDark");
+    let modButSub = document.createElement("a");
+    modButSub.className = "btn";
+    modButSub.innerHTML = "-"
+    modButSub.classList.add("btnDark");
+    mod.appendChild(modButAdd);
+    mod.appendChild(modButSub);
+
+    trBod.appendChild(thIt);
+    trBod.appendChild(thQ);
+    trBod.appendChild(thDe);
+    trBod.appendChild(thUn);
+    trBod.appendChild(thA);
+    trBod.appendChild(mod)
+
+    tBody.appendChild(trBod);
+  });
+  tabla.appendChild(tBody);
+  fila.appendChild(tabla);
+  let divFinal = document.createElement("div");
+  divFinal.className = "row";
+  let totalText = document.createElement("p");
+  totalText.className = "font-weight-bold";
+  totalText.innerHTML = "Total: $" + total;
+  
+  let botones = document.createElement("div");
+  botones.className = "row";
+
+  let botonesHueco = document.createElement("div");
+  botonesHueco.className = "col-6";
+  let botCan = document.createElement("div");
+  botonesHueco.className = "col";
+  let botCon = document.createElement("div");
+  botonesHueco.className = "col";
+
+  let botonCancel = document.createElement("a");
+  let botonConfirm = document.createElement("a");
+
+  botonCancel.className = "btn";
+  botonCancel.classList.add("cancel");
+  botonCancel.style.float = "right";
+  botonConfirm.className = "btn";
+  botonConfirm.classList.add("confirm");
+  botonConfirm.style.backgroundColor = "cornsilk";
+  botonConfirm.style.float = "right";
+  botonCancel.innerHTML = "Cancel";
+  botonCancel.setAttribute("id", "botonCancel");
+  botonCancel.setAttribute("type", "button");
+  botonCancel.setAttribute("data-bs-toggle", "modal");
+  botonCancel.setAttribute("data-bs-target", "#exampleModal");
+
+  botonConfirm.innerHTML = "Confirm order";
+  botonConfirm.onclick = () => {
+    carritoProcesado.forEach((ele, index) => {
+      console.log({
+        item: index,
+        quantity: ele.cantidad,
+        description: ele.producto.name,
+        unitPrice: ele.producto.price,
+      });
+      cartContent = [];
+      let fila = document.getElementById("filaProductos");
+      fila.innerHTML = " ";
+      actualizarCantidad();
+    });
+  };
+
+  botCan.appendChild(botonCancel);
+  botCon.appendChild(botonConfirm);
+  botones.appendChild(botonesHueco);
+  botones.appendChild(botCan);
+  botones.appendChild(botCon);
+  divFinal.appendChild(totalText);
+  divFinal.appendChild(botones);
+  fila.appendChild(divFinal);
+}
+cart.onclick = () => {
+  actualizarCantidad();
+  cargarCarroPedido();
+};
+
+let btnModalConfirm = document.getElementById("modalConfirm");
+btnModalConfirm.onclick = () => {
+  cartContent = [];
+  cargarCarroPedido();
+  actualizarCantidad();
+};
 
 actualizarCantidad();
